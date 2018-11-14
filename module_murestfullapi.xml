@@ -12,28 +12,14 @@
     <!-- Paths to be included in compilation bootclasspath -->
   </path>
   
-  <path id="murestfullapi.module.production.classpath">
-    <path refid="library.glassfish_5.0.0_-_restful_web_service.classpath"/>
-    <path refid="library.glassfish_5.0.0.classpath"/>
-  </path>
+
   
   <path id="murestfullapi.runtime.production.module.classpath">
     <pathelement location="${murestfullapi.output.dir}"/>
   </path>
+
   
-  <path id="murestfullapi.module.classpath">
-    <pathelement location="${murestfullapi.output.dir}"/>
-    <path refid="library.glassfish_5.0.0_-_restful_web_service.classpath"/>
-    <path refid="library.glassfish_5.0.0.classpath"/>
-  </path>
-  
-  <path id="murestfullapi.runtime.module.classpath">
-    <pathelement location="${murestfullapi.testoutput.dir}"/>
-    <pathelement location="${murestfullapi.output.dir}"/>
-    <path refid="library.glassfish_5.0.0_-_restful_web_service.classpath"/>
-    <path refid="library.glassfish_5.0.0.classpath"/>
-  </path>
-  
+
 
   
   <path id="murestfullapi.module.sourcepath">
@@ -50,7 +36,6 @@
     <javac destdir="${murestfullapi.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
       <compilerarg line="${compiler.args.murestfullapi}"/>
       <bootclasspath refid="murestfullapi.module.bootclasspath"/>
-      <classpath refid="murestfullapi.module.production.classpath"/>
       <src refid="murestfullapi.module.sourcepath"/>
     </javac>
     

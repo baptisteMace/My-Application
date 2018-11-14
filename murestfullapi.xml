@@ -53,18 +53,7 @@
   </patternset>
   
   
-  <!-- Application Server Libraries -->
-  
-  <path id="library.glassfish_5.0.0.classpath">
-    <pathelement location="C:/Users/bmace/Downloads/glassfish5/glassfish/modules/javax.ejb-api.jar"/>
-    <pathelement location="C:/Users/bmace/Downloads/glassfish5/glassfish/modules/javax.servlet-api.jar"/>
-    <pathelement location="C:/Users/bmace/Downloads/glassfish5/glassfish/modules/javax.servlet.jsp-api.jar"/>
-  </path>
-  
-  <path id="library.glassfish_5.0.0_-_restful_web_service.classpath">
-    <pathelement location="C:/Users/bmace/Downloads/glassfish5/glassfish/modules/javax.ws.rs-api.jar"/>
-  </path>
-  
+
   <!-- Modules -->
   
   <import file="${basedir}/module_murestfullapi.xml"/>
