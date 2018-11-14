@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_murestfullapi" default="compile.module.murestfullapi">
+  <dirname property="module.murestfullapi.basedir" file="${ant.file.module_murestfullapi}"/>
+  
+  <property name="module.jdk.home.murestfullapi" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.murestfullapi" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.murestfullapi" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.murestfullapi" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="murestfullapi.output.dir" value="${module.murestfullapi.basedir}/out/production/MuRestFullAPI"/>
+  <property name="murestfullapi.testoutput.dir" value="${module.murestfullapi.basedir}/out/test/MuRestFullAPI"/>
+  
+  <path id="murestfullapi.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="murestfullapi.module.production.classpath">
+    <path refid="${module.jdk.classpath.murestfullapi}"/>
+    <path refid="library.glassfish_5.0.0_-_restful_web_service.classpath"/>
+    <path refid="library.glassfish_5.0.0.classpath"/>
+  </path>
+  
+  <path id="murestfullapi.runtime.production.module.classpath">
+    <pathelement location="${murestfullapi.output.dir}"/>
+  </path>
+  
+  <path id="murestfullapi.module.classpath">
+    <path refid="${module.jdk.classpath.murestfullapi}"/>
+    <pathelement location="${murestfullapi.output.dir}"/>
+    <path refid="library.glassfish_5.0.0_-_restful_web_service.classpath"/>
+    <path refid="library.glassfish_5.0.0.classpath"/>
+  </path>
+  
+  <path id="murestfullapi.runtime.module.classpath">
+    <pathelement location="${murestfullapi.testoutput.dir}"/>
+    <pathelement location="${murestfullapi.output.dir}"/>
+    <path refid="library.glassfish_5.0.0_-_restful_web_service.classpath"/>
+    <path refid="library.glassfish_5.0.0.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.murestfullapi">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.murestfullapi">
+    <patternset refid="excluded.from.module.murestfullapi"/>
+  </patternset>
+  
+  <path id="murestfullapi.module.sourcepath">
+    <dirset dir="${module.murestfullapi.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.murestfullapi" depends="compile.module.murestfullapi.production,compile.module.murestfullapi.tests" description="Compile module MuRestFullAPI"/>
+  
+  <target name="compile.module.murestfullapi.production" depends="register.custom.compilers" description="Compile module MuRestFullAPI; production classes">
+    <mkdir dir="${murestfullapi.output.dir}"/>
+    <javac2 destdir="${murestfullapi.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.murestfullapi}/javac">
+      <compilerarg line="${compiler.args.murestfullapi}"/>
+      <bootclasspath refid="murestfullapi.module.bootclasspath"/>
+      <classpath refid="murestfullapi.module.production.classpath"/>
+      <src refid="murestfullapi.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.murestfullapi"/>
+    </javac2>
+    
+    <copy todir="${murestfullapi.output.dir}">
+      <fileset dir="${module.murestfullapi.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.murestfullapi.tests" depends="register.custom.compilers,compile.module.murestfullapi.production" description="compile module MuRestFullAPI; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.murestfullapi" description="cleanup module">
+    <delete dir="${murestfullapi.output.dir}"/>
+    <delete dir="${murestfullapi.testoutput.dir}"/>
+  </target>
+</project>
